@@ -1,8 +1,12 @@
-Ix = 3.8278e-3
-Iy = 3.8278e-3
-Iz = 7.6566e-3
-Kf_ax = 5.567e-4
-Kf_ay = 5.567e-4
-Kf_az = 6.354e-4
-g = 9.81
-m = 0.486
+from drone import Drone
+import numpy as np
+
+
+# Creating a drone
+init_state = [-20, 0, 0, 0, 0, 0, 0, 0]
+ref_state = [0, 0, 0, 0, 0, 0, -5, 0]
+drone = Drone(init_state=init_state, ref_state=ref_state)
+drone.simulate()
+#drone.angle_show()
+drone.position_show()
+drone.control_show()
