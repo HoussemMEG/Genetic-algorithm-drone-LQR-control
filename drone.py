@@ -14,7 +14,7 @@ m = 0.486
 
 # Simulation parameters
 init_time = 0
-final_time = 2
+final_time = 5
 dt = 0.001
 time = np.arange(init_time, final_time + dt, dt)
 
@@ -52,20 +52,21 @@ class Drone:
         self.control_memory.append(U)
         return new_state
 
-    def control(self):
-        K = np.array([[1.8398, -0.0459, 0.6971, 0.1687, -0.0008, 0.0348, 0.0016, 0.0001],
-                      [-0.0459, 1.1513, -0.0546, -0.0008, 0.1531, -0.0030, -0.0001, -0.0000],
-                      [1.3943, -0.1092, 2.4393, 0.0697, -0.0060, 0.2751, 0.0020, 0.0001],
-                      [-0.1992, 0.0156, -0.1297, -0.0100, 0.0009, -0.0065, -97.2003, -14.5800]])
+    def control(self, K_end):
+        K = [[1.8398, -0.0459, 0.6971, 0.1687, -0.0008, 0.0348, 0.0016, 0.0001],
+             [-0.0459, 1.1513, -0.0546, -0.0008, 0.1531, -0.0030, -0.0001, -0.0000],
+             [1.3943, -0.1092, 2.4393, 0.0697, -0.0060, 0.2751, 0.0020, 0.0001]]
+        K.append(K_end)
+        K = np.array(K)
         control = -K.dot(np.array(self.state)-self.ref_state) + \
                [0, 0, 0, m*g/(cos(self.state[0])*cos(self.state[1]))]
         if control[3] > 10:
             control[3] = 10
         return control
 
-    def simulate(self):
+    def simulate(self, K_end):
         for _ in range(len(time)-1):
-            self.step(self.control())
+            self.step(self.control(K_end))
 
     def position_show(self):
         plt.figure()
@@ -101,3 +102,9 @@ class Drone:
         plt.legend(loc='upper right')
         ax.set(xlabel='Temps [s]', ylabel='Amplitude [SI]')
         plt.show()
+
+
+
+
+
+#[-0.1992, 0.0156, -0.1297, -0.0100, 0.0009, -0.0065, -97.2003, -14.5800]
