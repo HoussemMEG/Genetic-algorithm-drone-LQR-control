@@ -1,13 +1,13 @@
 import numpy as np
 from numpy.random import randint
-from random import random, choice, gauss
+from random import random, gauss, uniform
 from drone import dt
-import pandas as pd
-from random import gauss, randrange
+
 from operator import add
 
 # fitness variables
 R = [0.36]
+#R = [100000]
 Q = [3400, 50]
 
 class GA:
@@ -18,7 +18,9 @@ class GA:
         self.genes_lower_lim = genes_lower_lim
         self.z_enable = z_enable
         self.population = []
+        self.fitness = []
         self.init_pop()
+        self.mutation_variance = 0.5
 
     def init_pop(self):
         for _ in range(self.pop_size):
@@ -43,30 +45,47 @@ class GA:
         return z_sum
 
     def calculate_fitness(self, state_memories, control_memories):
-        fitness = [self.individual_fitness(state_memories[i], control_memories[i]) for i in range(len(state_memories))]
-        return fitness
+        fitness = [[round(self.individual_fitness(state_memories[i], control_memories[i]), 2), i]
+                   for i in range(len(state_memories))]
+        fitness_sorted, sorted_index = zip(*sorted(fitness, reverse=True))
+        self.population = [self.population[i] for i in sorted_index]
+        print(fitness_sorted, " = ", round(sum(fitness_sorted)))
+        self.fitness = fitness_sorted
 
-    def selection(self, fitness):
+    def selection(self, state_memories, control_memories):
+        self.calculate_fitness(state_memories, control_memories)
         chance = gauss(0.5, 0.11)
         while chance > 1 or chance < 0:
             chance = gauss(0.5, 0.11)
-        fitness_copy = fitness[:]
-        fitness = [abs(fitness[i]-1.1*max(fitness)) for i in range(len(fitness))]
-        sum_fitness = sum(fitness)
-        fitness_normalised = [[fitness[i]/sum_fitness, i] for i in range(len(fitness))]
-        fitness_sorted, sorted_index = zip(*sorted(fitness_normalised))
-        fitness_cumsum = list(np.cumsum(fitness_sorted))
+        fitnesses = [round(abs(self.fitness[i]-1.1*max(self.fitness)), 2) for i in range(len(self.fitness))]
+        sum_fitness = sum(fitnesses)
+        fitness_normalised = [fitness/sum_fitness for fitness in fitnesses]
+        fitness_cumsum = list(np.cumsum(fitness_normalised))
         fitness_cumsum.append(chance)
         selection_index = sorted(fitness_cumsum).index(chance)
-        selection = sorted_index[selection_index:]
+        selection = list(range(selection_index, self.pop_size))
         while len(selection) < 2:
-            selection = self.selection(fitness_copy)
+            selection = self.selection(state_memories, control_memories)
         else:
             if len(selection) % 2 == 1:
                 return selection[1:]
             else:
                 return selection
 
+    def mating(self, selection):
+        for i in range(0, len(selection), 2):
+            if self.z_enable:
+                pivot_point = 7
+            else:
+                pivot_point = randint(1, self.genes_nb)
+            child_one = self.population[selection[i]][0:pivot_point] + self.population[selection[i+1]][pivot_point:]
+            child_two = self.population[selection[i+1]][0:pivot_point] + self.population[selection[i]][pivot_point:]
+            self.population[i] = child_one
+            self.population[i+1] = child_two
 
-ga = GA(10)
-print(ga.selection([1406.8072633858162, 2082.4334610145684, 827.3850702731806, 12756.016418374971, 746.2045867628776, 1406.8072633858162, 2082.4334610145684, 827.3850702731806, 12756.016418374971, 746.2045867628776]))
+    def mutation(self):
+        if self.z_enable:
+            for j, person in enumerate(self.population):
+                for i, gene in enumerate(person):
+                    if uniform(0, 1) <= 0.3 and (i == 6 or i == 7):
+                        self.population[j][i] = round(gauss(gene, self.mutation_variance), 2)
