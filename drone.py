@@ -14,7 +14,7 @@ m = 0.486
 
 # Simulation parameters
 init_time = 0
-final_time = 5
+final_time = 2
 dt = 0.01
 time = np.arange(init_time, final_time + dt, dt)
 
@@ -45,7 +45,10 @@ class Drone:
         new_state[5] = self.state[5] + dt * ((Ix-Iy)/Iz*self.state[3]*self.state[4] + U[2]/Iz
                                              - Kf_az/Iz*(self.state[5])**2)
         new_state[6] = self.state[6] + dt * (self.state[7]) if ((self.state[6] + dt * (self.state[7])) <= 0) else 0
+        print("z", new_state[6])
+        #print(new_state[6])
         new_state[7] = self.state[7] + dt * (g - U[3]/m*cos(self.state[0])*cos(self.state[1]))
+        print("z_dot", new_state[7])
         self.state = new_state
 
         # saving the new state and control signals
@@ -57,12 +60,13 @@ class Drone:
         K = [[1.8398, -0.0459, 0.6971, 0.1687, -0.0008, 0.0348, 0.0016, 0.0001],
              [-0.0459, 1.1513, -0.0546, -0.0008, 0.1531, -0.0030, -0.0001, -0.0000],
              [1.3943, -0.1092, 2.4393, 0.0697, -0.0060, 0.2751, 0.0020, 0.0001],
-             [-0.1992, 0.0156, -0.1297, -0.0100, 0.0009, -0.0065, -97.1825, -15.2758]]
+             [-0.1992, 0.0156, -0.1297, -0.0100, 0.0009, -0.0065, -97.2003, -14.5800]]
         #K.append(K_end)
         K = np.array(K)
         control = -K.dot(np.array(self.state)-self.ref_state) + [0, 0, 0, m*g/(cos(self.state[0])*cos(self.state[1]))]
         if control[3] > 10:
             control[3] = 10
+        print("u", control[3])
         return control
 
     def simulate(self, K_end):

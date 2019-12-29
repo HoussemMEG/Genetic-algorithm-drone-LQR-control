@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b3930833-cc62-45eb-a398-84f441dfa39f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drone.py" beforeDir="false" afterPath="$PROJECT_DIR$/drone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,9 +152,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.drone" />
         <item itemvalue="Python.utils" />
         <item itemvalue="Python.genetic_algorithm" />
-        <item itemvalue="Python.drone" />
         <item itemvalue="Python.genetic-algorithm" />
       </list>
     </recent_temporary>
@@ -208,22 +211,22 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1577617265759">
+    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1577618814358">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577617265759" />
-    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1577617265759">
+    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
+    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1577618814358">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1577617265759" />
-    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1577617265759">
+    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
+    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1577618814358">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1577617265759" />
-    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1577617265759">
+    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
+    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1577618814358">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1577617265759" />
+    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
     <state width="1237" height="208" key="GridCell.Tab.1.bottom" timestamp="1577486372618">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -247,8 +250,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Drone_GA$utils.coverage" NAME="utils Coverage Results" MODIFIED="1577553897035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Drone_GA$drone.coverage" NAME="drone Coverage Results" MODIFIED="1577457447985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Drone_GA$genetic_algorithm.coverage" NAME="genetic_algorithm Coverage Results" MODIFIED="1577479414867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Drone_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1577617244210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Drone_GA$drone.coverage" NAME="drone Coverage Results" MODIFIED="1577618413432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Drone_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1577618814350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

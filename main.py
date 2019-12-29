@@ -21,10 +21,11 @@ for hello in range(number):
         all_state_memories.append(drone.state_memory)
         all_control_memories.append(drone.control_memory)
         if (index == population_number - 1) and hello == number-1:
-            print(ga.population[index])
+            #print(drone.state_memory)
+            #print(ga.population[index])
             drone.position_show()
-            drone.angle_show()
-            drone.control_show()
+            #drone.angle_show()
+            #drone.control_show()
         drone.reset_memory()
 
     selection = ga.selection(all_state_memories, all_control_memories)

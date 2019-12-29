@@ -49,7 +49,7 @@ class GA:
                    for i in range(len(state_memories))]
         fitness_sorted, sorted_index = zip(*sorted(fitness, reverse=True))
         self.population = [self.population[i] for i in sorted_index]
-        print(fitness_sorted, " = ", round(sum(fitness_sorted)))
+        #print(fitness_sorted, " = ", round(sum(fitness_sorted)))
         self.fitness = fitness_sorted
 
     def selection(self, state_memories, control_memories):
