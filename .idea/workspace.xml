@@ -36,7 +36,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="python.debugger.dataview.autoresize" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="drone" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -191,6 +191,7 @@
       <workItem from="1577614443943" duration="1182000" />
       <workItem from="1577615640862" duration="464000" />
       <workItem from="1577616116489" duration="1337000" />
+      <workItem from="1577639530384" duration="318000" />
     </task>
     <servers />
   </component>
@@ -211,22 +212,22 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1577618814358">
+    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1577639807832">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
-    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1577618814358">
+    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577639807832" />
+    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1577639807832">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
-    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1577618814358">
+    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1577639807832" />
+    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1577639807831">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
-    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1577618814358">
+    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1577639807831" />
+    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1577639807832">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1577618814358" />
+    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1577639807832" />
     <state width="1237" height="208" key="GridCell.Tab.1.bottom" timestamp="1577486372618">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -243,15 +244,19 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state width="1237" height="208" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1577486372618" />
-    <state x="336" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1577616116525">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1577629901065">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="336" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1577616116525" />
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1577629901065" />
+    <state x="336" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1577639756398">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="336" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1577639756398" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Drone_GA$utils.coverage" NAME="utils Coverage Results" MODIFIED="1577553897035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Drone_GA$genetic_algorithm.coverage" NAME="genetic_algorithm Coverage Results" MODIFIED="1577479414867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Drone_GA$drone.coverage" NAME="drone Coverage Results" MODIFIED="1577618413432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Drone_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1577618814350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Drone_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1577639807819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

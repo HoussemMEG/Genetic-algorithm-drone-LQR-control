@@ -20,7 +20,7 @@ class GA:
         self.population = []
         self.fitness = []
         self.init_pop()
-        self.mutation_variance = 0.5
+        self.mutation_variance = 0.2
 
     def init_pop(self):
         for _ in range(self.pop_size):
@@ -49,7 +49,7 @@ class GA:
                    for i in range(len(state_memories))]
         fitness_sorted, sorted_index = zip(*sorted(fitness, reverse=True))
         self.population = [self.population[i] for i in sorted_index]
-        #print(fitness_sorted, " = ", round(sum(fitness_sorted)))
+        print(fitness_sorted, " = ", round(sum(fitness_sorted)))
         self.fitness = fitness_sorted
 
     def selection(self, state_memories, control_memories):
