@@ -2,16 +2,15 @@ import numpy as np
 from numpy.random import randint
 from random import random, gauss, uniform
 from drone import dt
-
-from operator import add
-
+from pprint import pprint
 # fitness variables
-R = [0.36]
-#R = [100000]
-Q = [3400, 50]
+#R = [0.36]
+R = [350, 350, 0.28, 0.36]
+Q = [0.8, 0.0001, 0.8, 0.001, 500, 0.003, 3400, 50]
+#Q = [3400, 50]
 
 class GA:
-    def __init__(self, pop_size, genes_nb=8, genes_upper_lim=2, genes_lower_lim=-2, z_enable=True):
+    def __init__(self, pop_size, genes_nb=8, genes_upper_lim=0, genes_lower_lim=2, z_enable=True):
         self.pop_size = pop_size
         self.genes_nb = genes_nb
         self.genes_upper_lim = genes_upper_lim
@@ -20,29 +19,48 @@ class GA:
         self.population = []
         self.fitness = []
         self.init_pop()
-        self.mutation_variance = 0.2
+        self.mutation_variance = 0.05 #0.5
+        self.reproduction_rate = 0.6
 
     def init_pop(self):
         for _ in range(self.pop_size):
             self.population.append(self.individual())
 
     def individual(self):
-        if self.z_enable:
-            individual = [-0.1992, 0.0156, -0.1297, -0.0100, 0.0009, -0.0065]
-            temp = [round(random() * -100, 2) for _ in range(2)]
-            individual += temp
-        else:
-            individual = [round(random() * (self.genes_upper_lim - self.genes_lower_lim) +
-                                self.genes_lower_lim, 2) for _ in range(self.genes_nb)]
+        individual = []
+        for i in range(3):
+            temp = [0]*8
+            temp[i] = round(random() * (self.genes_upper_lim - self.genes_lower_lim) + self.genes_lower_lim, 2)
+            temp[i+3] = round(random() * (self.genes_upper_lim - self.genes_lower_lim) + self.genes_lower_lim, 2)
+            individual += [temp]
+        # Z part
+        individual += [[0]*8]
+        individual[-1][-2] = round(random() * -100, 2)
+        individual[-1][-1] = round(random() * -100, 2)
         return individual
 
     def individual_fitness(self, response, control_signal):
-        z_squared = [Q[0]*element[6]**2 for element in response]
-        z_dot_squared = [Q[1]*element[7]**2 for element in response]
-        thrust_squared = [R[0]*element[3]**2 for element in control_signal]
-        z_total = [z_squared[i]+z_dot_squared[i]+thrust_squared[i] for i in range(len(response))]
-        z_sum = dt*((z_total[0]+z_total[-1])/2+sum(z_total[1:-1]))
-        return z_sum
+        # response part
+        phi_squared = [Q[0]*element[0]**2 for element in response]
+        phi_dot_squared = [Q[1]*element[1]**2 for element in response]
+        theta_squared = [Q[2]*element[2]**2 for element in response]
+        theta_dot_squared = [Q[3]*element[3]**2 for element in response]
+        psi_squared = [Q[4]*element[4]**2 for element in response]
+        psi_dot_squared = [Q[5]*element[5]**2 for element in response]
+        z_squared = [Q[6]*element[6]**2 for element in response]
+        z_dot_squared = [Q[7]*element[7]**2 for element in response]
+        # control part
+        tau_phi_squared = [R[0]*element[0]**2 for element in control_signal]
+        tau_theta_squared = [R[1]*element[1]**2 for element in control_signal]
+        tau_psi_squared = [R[2]*element[2]**2 for element in control_signal]
+        thrust_squared = [R[3]*element[3]**2 for element in control_signal]
+        # adding part
+        total = [phi_squared[i] + phi_dot_squared[i] + theta_squared[i] + theta_dot_squared[i] +
+                 psi_squared[i] + psi_dot_squared[i] + z_squared[i]+z_dot_squared[i] +
+                 tau_phi_squared[i] + tau_theta_squared[i] +
+                 tau_psi_squared[i] + thrust_squared[i] for i in range(len(response))]
+        integral = dt * ((total[0]+total[-1])/2 + sum(total[1:-1]))
+        return integral
 
     def calculate_fitness(self, state_memories, control_memories):
         fitness = [[round(self.individual_fitness(state_memories[i], control_memories[i]), 2), i]
@@ -54,9 +72,9 @@ class GA:
 
     def selection(self, state_memories, control_memories):
         self.calculate_fitness(state_memories, control_memories)
-        chance = gauss(0.5, 0.11)
+        chance = gauss(self.reproduction_rate, 0.11)
         while chance > 1 or chance < 0:
-            chance = gauss(0.5, 0.11)
+            chance = gauss(0.4, 0.11)
         fitnesses = [round(abs(self.fitness[i]-1.1*max(self.fitness)), 2) for i in range(len(self.fitness))]
         sum_fitness = sum(fitnesses)
         fitness_normalised = [fitness/sum_fitness for fitness in fitnesses]
@@ -74,18 +92,28 @@ class GA:
 
     def mating(self, selection):
         for i in range(0, len(selection), 2):
-            if self.z_enable:
-                pivot_point = 7
-            else:
-                pivot_point = randint(1, self.genes_nb)
-            child_one = self.population[selection[i]][0:pivot_point] + self.population[selection[i+1]][pivot_point:]
-            child_two = self.population[selection[i+1]][0:pivot_point] + self.population[selection[i]][pivot_point:]
+            pivot_point = randint(1, self.genes_nb)
+            child_one = []
+            child_two = []
+            for j in range(4):
+                if self.z_enable and j == 3:
+                    pivot_point = 7
+                child_one += [self.population[selection[i]][j][0:pivot_point] + self.population[selection[i+1]][j][pivot_point:]]
+                child_two += [self.population[selection[i+1]][j][0:pivot_point] + self.population[selection[i]][j][pivot_point:]]
             self.population[i] = child_one
             self.population[i+1] = child_two
 
     def mutation(self):
-        if self.z_enable:
-            for j, person in enumerate(self.population):
-                for i, gene in enumerate(person):
-                    if uniform(0, 1) <= 0.3 and (i == 6 or i == 7):
-                        self.population[j][i] = round(gauss(gene, self.mutation_variance), 2)
+        #print("before")
+        #pprint(self.population[5])
+        for j, person in enumerate(self.population[:-2]):
+            for k, genes in enumerate(person):
+                for i, gene in enumerate(genes):
+                    if uniform(0, 1) <= 0.3 and self.population[j][k][i] != 0:
+                        if k == 3 and (i == 6 or i == 7):
+                            self.population[j][k][i] = max(-100, min(round(gauss(gene, self.mutation_variance), 2), 0))
+                        else:
+                            self.population[j][k][i] = max(self.genes_lower_lim, min(round(gauss(gene, self.mutation_variance), 2), self.genes_upper_lim))
+                        # if j==5:
+                        #     print("after :", k, i)
+                        #     pprint(self.population[5])

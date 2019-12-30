@@ -14,18 +14,17 @@ m = 0.486
 
 # Simulation parameters
 init_time = 0
-final_time = 2
+final_time = 5
 dt = 0.01
 time = np.arange(init_time, final_time + dt, dt)
-
 
 class Drone:
     # % X = [phi theta psi P Q R Z Z_dot];
     def __init__(self, init_state=[0]*8, ref_state=[0]*8):
         # state = [phi_0, theta_0, psi_0, P_0, Q_0, R_0, Z_0, Z_dot_0]
         self.init_state = init_state
-        self.ref_state = [*deg2rad(ref_state[0:3]), *ref_state[3:]]
-        self.state = [*deg2rad(init_state[0:3]), *init_state[3:]]
+        self.ref_state = ref_state
+        self.state = init_state
         self.state_memory = [self.state]
         self.control_memory = [[0]*4]
 
@@ -47,25 +46,26 @@ class Drone:
         new_state[6] = self.state[6] + dt * (self.state[7]) if ((self.state[6] + dt * (self.state[7])) <= 0) else 0
         new_state[7] = self.state[7] + dt * (g - U[3]/m*cos(self.state[0])*cos(self.state[1]))
         self.state = new_state
-
         # saving the new state and control signals
         self.state_memory.append(new_state)
         self.control_memory.append(U)
         return new_state
 
-    def control(self, K_end):
-        K = [[1.8398, -0.0459, 0.6971, 0.1687, -0.0008, 0.0348, 0.0016, 0.0001],
-             [-0.0459, 1.1513, -0.0546, -0.0008, 0.1531, -0.0030, -0.0001, -0.0000],
-             [1.3943, -0.1092, 2.4393, 0.0697, -0.0060, 0.2751, 0.0020, 0.0001],
-             [-0.1992, 0.0156, -0.1297, -0.01, 0.0009, -0.0065, -95.43, -17.12]]
-        #[-0.1992, 0.0156, -0.1297, -0.0100, 0.0009, -0.0065, -97.2003, -14.5800]
-        #K.append(K_end)
+    def control(self, K):
+        # K = [[0.0151, 0, 0, 0.0545, 0, 0, 0, 0],
+        #      [0, 0, 0, 0, 0.0767, 0, 0, 0],
+        #      [0, 0, 1.8898, 0, 0, 0.1991, 0, 0],
+        #      [0, 0, 0, 0, 0, 0, -97.1825, -15.2758]]
+
+        # K.append(K_end)
         K = np.array(K)
-        control = -K.dot(np.array(self.state)-self.ref_state) + [0, 0, 0, m*g/(cos(self.state[0])*cos(self.state[1]))]
-        if control[3] > 10:
-            control[3] = 10
-        elif control[3] < 0:
-            control[3] = 0
+        control = -K.dot(np.array(self.state)-self.ref_state) + \
+                  [0, 0, 0, m*g/(cos(self.state[0])*cos(self.state[1]))]
+        control[0] = max(-1, min(control[0], 1))
+        control[1] = max(-1, min(control[1], 1))
+        control[2] = max(-1, min(control[2], 1))
+        control[3] = max(0, min(control[3], 10))
+        #print('CONTROL :', control)
         return control
 
     def simulate(self, K_end):
@@ -88,8 +88,8 @@ class Drone:
         plt.title("Angles simulation")
         plt.grid(b=True)
         plt.plot(time, [rad2deg(row[0]) for row in self.state_memory], label="Phi")
-        plt.plot(time, [rad2deg(row[1]) for row in self.state_memory], label="Theta")
-        plt.plot(time, [rad2deg(row[2]) for row in self.state_memory], label="Psi")
+        plt.plot(time, [rad2deg(row[2]) for row in self.state_memory], label="Theta")
+        plt.plot(time, [rad2deg(row[4]) for row in self.state_memory], label="Psi")
         plt.legend(loc='upper right')
         ax.set(xlabel='Temps [s]', ylabel='Angle [deg]')
         plt.show()
@@ -110,7 +110,7 @@ class Drone:
     def reset_memory(self):
         self.state_memory = [self.init_state]
         self.control_memory = [[0]*4]
-        self.state = [*deg2rad(self.init_state[0:3]), *self.init_state[3:]]
+        self.state = self.init_state
 
 
 
