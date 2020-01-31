@@ -1,3 +1,3 @@
-# Genetic-algorithm-drone-LQR-control
+# Genetic algorithm drone LQR control
 
-LQR control of a drone using genetic algorithm
+LQR control of a drone using a genetic algorithm.
