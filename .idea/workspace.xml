@@ -33,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Alpha pilot/Alpha_Pilot_DroneControl_IMU" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="python.debugger.dataview.autoresize" value="false" />
@@ -195,7 +195,16 @@
       <workItem from="1577616116489" duration="1337000" />
       <workItem from="1577639530384" duration="6615000" />
       <workItem from="1577651538447" duration="4620000" />
-      <workItem from="1577696701273" duration="2175000" />
+      <workItem from="1577696701273" duration="7170000" />
+      <workItem from="1577704441417" duration="5133000" />
+      <workItem from="1577825636974" duration="819000" />
+      <workItem from="1578423455192" duration="6843000" />
+      <workItem from="1578747900856" duration="205000" />
+      <workItem from="1578758915706" duration="459000" />
+      <workItem from="1578760756906" duration="495000" />
+      <workItem from="1578774571001" duration="249000" />
+      <workItem from="1578775465729" duration="2353000" />
+      <workItem from="1580500310161" duration="232000" />
     </task>
     <servers />
   </component>
@@ -216,26 +225,26 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="101" key="FileChooserDialogImpl" timestamp="1577648879373">
+    <state x="421" y="101" key="FileChooserDialogImpl" timestamp="1577710156814">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="421" y="101" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1577648879373" />
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom" timestamp="1577698877722">
+    <state x="421" y="101" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1577710156814" />
+    <state width="1237" height="72" key="GridCell.Tab.0.bottom" timestamp="1578431621102">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1577698877722" />
-    <state width="1237" height="188" key="GridCell.Tab.0.center" timestamp="1577698877722">
+    <state width="1237" height="72" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1578431621102" />
+    <state width="1237" height="72" key="GridCell.Tab.0.center" timestamp="1578431621102">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1577698877722" />
-    <state width="1237" height="188" key="GridCell.Tab.0.left" timestamp="1577698877722">
+    <state width="1237" height="72" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1578431621102" />
+    <state width="1237" height="72" key="GridCell.Tab.0.left" timestamp="1578431621102">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1577698877722" />
-    <state width="1237" height="188" key="GridCell.Tab.0.right" timestamp="1577698877722">
+    <state width="1237" height="72" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1578431621102" />
+    <state width="1237" height="72" key="GridCell.Tab.0.right" timestamp="1578431621102">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="188" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1577698877722" />
+    <state width="1237" height="72" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1578431621102" />
     <state width="1237" height="208" key="GridCell.Tab.1.bottom" timestamp="1577486372618">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -256,10 +265,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1577629901065" />
-    <state x="336" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1577696706305">
+    <state x="336" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1580500352773">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="336" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1577696706305" />
+    <state x="336" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1580500352773" />
     <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1577698640475">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -269,6 +278,6 @@
     <SUITE FILE_PATH="coverage/Drone_GA$utils.coverage" NAME="utils Coverage Results" MODIFIED="1577698218465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Drone_GA$drone.coverage" NAME="drone Coverage Results" MODIFIED="1577618413432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Drone_GA$genetic_algorithm.coverage" NAME="genetic_algorithm Coverage Results" MODIFIED="1577641669393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Drone_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1577698877716" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Drone_GA$main.coverage" NAME="main Coverage Results" MODIFIED="1578428421393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
