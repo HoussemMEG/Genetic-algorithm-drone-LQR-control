@@ -1,3 +1,4 @@
-# Genetic algorithm drone LQR control
+# Genetic algorithm LQR control of drone
 
-LQR control of a drone using a genetic algorithm.
+Using a genetic algorithm for a state feedback drone control, the genetic algorithm had to optimize an LQ loss function.
+We are supposed to get the same gain as solving the Riccati algebraic equation.
